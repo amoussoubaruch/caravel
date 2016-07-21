@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 import SqlEditor from './SqlEditor'
 import shortid from 'shortid'
+import Link from './Link'
 
 var queryCount = 1;
 
@@ -28,24 +29,32 @@ const QueryEditors = React.createClass({
     this.setState({tabkey: key});
   },
   render: function () {
-    var running = this.props.queries.filter((q) => { return q.state == 'running' });
-    var running = running.map((q) => { return q.sqlEditorId });
     var that = this;
     var editors = this.props.queryEditors.map(function (qe, i) {
-      var title = qe.title;
-      if (running.includes(qe.id)) {
-        title = <div>{qe.title} <div className='circle-running'/></div>;
-      }
       var latestQuery = null;
       that.props.queries.forEach((q) => {
         if (q.id == qe.latestQueryId) {
           latestQuery = q;
         }
       });
+      var circle = null;
+      if (latestQuery) {
+        circle = <div className={"circle " + latestQuery.state} />;
+      }
+      var tabTitle = (
+        <div>
+          {qe.title} {circle} 
+          <Link
+              onClick={that.props.actions.removeQueryEditor.bind(that, qe)}
+              className="fa fa-close"
+              href="#"
+              tooltip="Close tab"/>
+        </div>
+      );
       return (
         <Tab
           key={qe.id}
-          title={title}
+          title={tabTitle}
           eventKey={i}>
             <SqlEditor
               name={qe.id}

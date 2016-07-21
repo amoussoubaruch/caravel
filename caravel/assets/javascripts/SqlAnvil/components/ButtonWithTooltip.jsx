@@ -13,6 +13,7 @@ const ButtonWithTooltip = React.createClass({
       <OverlayTrigger overlay={tooltip} delayShow={300} delayHide={150}>
         <Button
           onClick={this.props.onClick}
+          disabled={this.props.disabled}
           className={this.props.className}>
             {this.props.children}
         </Button>

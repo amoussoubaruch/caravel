@@ -9,10 +9,7 @@ const SouthPane = React.createClass({
         <Tab title="Query Log" eventKey={1}>
           <QueryLog/>
         </Tab>
-        <Tab title="Saved Queries" eventKey={2}>
-          Unavaillable.
-        </Tab>
-        <Tab title="Popular Queries" eventKey={3}>
+        <Tab title="Templating" eventKey={2}>
           Unavaillable.
         </Tab>
       </Tabs>

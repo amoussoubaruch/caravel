@@ -64,13 +64,21 @@ div.Workspace {
     padding: 1px 6px;
     border: 1px solid transparent;
 }
-.circle-running {
+.circle {
     border-radius: 50%;
     width: 10px;
     height: 10px;
     display: inline-block;
     border: 1px solid #444;
+}
+.running {
     background-color: lime;
+}
+.success {
+    background-color: green;
+}
+.failed {
+    background-color: red;
 }
 .ws-el:hover { border: 1px solid #DDD; }
 
@@ -156,4 +164,8 @@ Resizer.disabled:hover {
 
 a.Link {
     padding: 7px 3px;
+}
+
+table .label {
+    margin-top: 5px;
 }
